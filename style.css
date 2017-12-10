@@ -1,0 +1,80 @@
+
+html, body {
+	height:100%;
+	width:100%;
+	margin: 0;
+	padding:0;
+	overflow-x: hidden;
+	font-family: helvetica;
+	background-image: url("circuit.jpg");
+	background-size: cover;
+	/*Sets the background and formatting*/
+}
+.navbar {
+	border-radius: 0px;
+}
+
+.navbar-nav {
+	padding-right: 10px;
+}
+
+
+#main {
+	padding-top: 75px;
+	padding-bottom: 50px;
+	height:100%;
+}
+
+.pageTitle {
+	text-align: center;
+    display: block;
+}
+
+.authors {
+	display: block;
+    text-align: center;
+}
+
+.description {
+	margin: 0 auto;
+	text-align: center;
+
+}
+
+.page-title {
+	width: 90%;
+	margin: 0 auto;
+	display: block;
+	text-align: center;
+}
+
+.authors {
+	width: 90%;
+	margin: 0 auto;
+	display: block;
+	text-align: center;
+}
+
+.description {
+	padding-top: 20px;
+	width: 90%;
+	margin: 0 auto;
+	display: block;
+	text-align: center;
+}
+
+
+.boxes {
+	border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 5px;
+    text-align: center;
+    height: 25%;
+    min-height: 250px;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    display: block;
+    background-color: white;
+}
