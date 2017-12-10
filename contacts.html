@@ -44,25 +44,97 @@
 	    </div>
 	  </div>
 	</nav>
+
+
 	<div id="main" class="container">
-		<div class="row">
-			<div class=".col-md-6">
-		<div id="box-one" class="boxes">
-				<img src="P2VN8.png" class="image img-responsive" alt="Note8VSPixel2XL">
-				<h2 class="page-title" class="text">Galaxy Note 8 vs Pixel 2 XL</h2>
-				<h3 class="authors" class="text">By Nix</h3>
-				<p class="description" class="text"> The two biggest flagship androids on the market go head to head in this battle of the large android phones</p>
+		<style>
+			.red{
+				color: red;
+				}
+			.form-area
+			{
+				background-color: #FAFAFA;
+				padding: 10px 40px 60px;
+				margin: 10px 0px 60px;
+				border: 1px solid GREY;
+				}
+		</style>
+		<div class="col-md-5">
+				<div class="form-area">  
+						<form role="form">
+						<br style="clear:both">
+												<h3 style="margin-bottom: 25px; text-align: center;">Contact Form</h3>
+								<div class="form-group">
+								<input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" required>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+							</div>
+												<div class="form-group">
+												<textarea class="form-control" type="textarea" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>
+														<span class="help-block"><p id="characterLeft" class="help-block "></p></span>                    
+												</div>
+								
+						<button type="button" id="submit" name="submit" class="btn btn-primary pull-right" onclick="submitForm()">Submit Form</button>
+						</form>
+				</div>
 		</div>
-		<div id="box-two" class="boxes">
-				<img src="P2ViX.png" class="image img-responsive" alt="IphoneXVSPixel2XL">
-				<h2 class="page-title" class="text">iPhone X vs Pixel 2 XL</h2>
-				<h3 class="authors" class="text">By Nix and Shine</h3>
-				<p class="description" class="text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam interdum congue justo, ac facilisis tellus rhoncus ac. Praesent imperdiet metus lorem, nec egestas dui hendrerit non. Nunc ultricies interdum nunc ut placerat. Curabitur fringilla odio risus, in tristique mauris sodales eget. Aenean ullamcorper nisi in erat euismod, et auctor magna commodo. Morbi rutrum, urna ac iaculis accumsan, felis neque faucibus libero, et blandit eros turpis vitae sapien. Phasellus vitae neque molestie, pharetra felis in, egestas justo. </p>
-			</div>
-		</h2>
+		<div class="col-md-5" id="contact-response" style="background-color: white">
+
 		</div>
 	</div>
 </div>
+	<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyAjtFIRsoN3Py29PkYHI27I4D8O1k_KqG0",
+			authDomain: "blue-moon-tech.firebaseapp.com",
+			databaseURL: "https://blue-moon-tech.firebaseio.com",
+			projectId: "blue-moon-tech",
+			storageBucket: "",
+			messagingSenderId: "871608576103"
+		};
+		firebase.initializeApp(config);
+
+		var starCountRef = firebase.database().ref('users-feedback/');
+		starCountRef.on('value', function(snapshot) {
+			document.getElementById("contact-response").innerHTML = ""
+			snapshot.forEach((child) => {
+				console.log(child.key, child.val()); 
+				
+				document.getElementById("contact-response").innerHTML = document.getElementById("contact-response").innerHTML + child.key + JSON.stringify(child.val());	
+				document.getElementById("contact-response").innerHTML = document.getElementById("contact-response").innerHTML + "\n"
+			});
+		
+		});
+		
+	</script>
+	<script>
+			function submitForm() {
+				alert("Submission successful!")
+				var database = firebase.database();
+				var date = new Date();				
+				var name = document.getElementById("name").value;
+				var email = document.getElementById("email").value;				
+				var mobile = document.getElementById("mobile").value;				
+				var subject = document.getElementById("subject").value;				
+				var message = document.getElementById("message").value;				
+				firebase.database().ref('users-feedback/' + date + '/').set({
+					"name": name,
+					"email": email,
+					"mobile": mobile,
+					"subject": subject,
+					"message": message
+				});
+			}
+		</script>
 	<script src="js/bootstrap.js"></script>
 </body>
 </html>
